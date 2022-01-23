@@ -1,12 +1,10 @@
 <script setup>
   import { useStore } from 'vuex';
-  import { onMounted } from 'vue';
+  import {computed} from "vue";
 
 
-  const store = useStore();
-  onMounted(async () => {
-    await store.dispatch("fetchCategories");
-})
+  const store = useStore
+  const categories = computed(() => store.getters.getCategories)
 </script>
 
 <template>
