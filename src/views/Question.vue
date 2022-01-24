@@ -14,7 +14,7 @@
 
     <fieldset class="mb-5">
         <!--Checkbuttons with answers generate from the API-->
-        <label class="block">Question name</label>
+        <label class="block">Question name</label><br>
         <div id="answerCheckbox">
             <label for="firstOption">Answer number 1</label>
             <input 
@@ -39,7 +39,7 @@
             type="checkbox" 
             id="fourthOption" 
             v-model="checkedNames"/>
-            
+        
 
         </div>
       </fieldset>  
