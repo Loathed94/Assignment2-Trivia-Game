@@ -4,7 +4,7 @@
 </script>
 
 <template>
-
+<h1>Press down below to get a question!</h1>
 </template>
 
 <style scoped>
