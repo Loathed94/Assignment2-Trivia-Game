@@ -7,9 +7,11 @@
 <h1>Press down below to get a question!</h1>
 
 <form>
+    <!--Button to generate a question from the API-->
     <button type="submit">Get question</button>
 
     <fieldset>
+        <!--Checkbuttons with answers generate from the API-->
         <label>Question name</label><br>
         <input type="checkbox" id="question.name"/>
         <input type="checkbox" id="question.name"/>
@@ -18,6 +20,7 @@
 
     </fieldset>
 
+<!--Submit the answer and count the points, redirect to result page-->
 <button type="submit">Submit answer</button>
 
 </form>
