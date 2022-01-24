@@ -1,8 +1,8 @@
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHistory} from 'vue-router';
+import store from "./store";
 import Start from './views/Start.vue'
 import Question from './views/Question.vue';
 import store from "./store";
-
 
 const routes = [
     {
@@ -18,5 +18,5 @@ const routes = [
 
 export default createRouter({
     history: createWebHistory(),
-    routes
-})
+    routes    
+});
