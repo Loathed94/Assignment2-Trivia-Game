@@ -5,7 +5,7 @@ import { apiFetchCategories } from './api/questionDB';
 
 export default createStore({
     state: {
-        categories: []
+        categories: [""],
     },
     getters : {
         getCategories: (state) => {
