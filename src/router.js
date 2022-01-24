@@ -3,16 +3,18 @@ import store from "./store";
 import Start from './views/Start.vue'
 import Question from './views/Question.vue';
 import store from "./store";
+import Vue from 'vue';
 
 const routes = [
     {
         path: "/",
         component: Start,
-        beforeEnter: "nån authGuard-aktig-grej"
+        beforeEnter: ""
     },
     {
         path:"/question",
         component: Question,
+        beforeEnter: ""
     }
 ];
 
