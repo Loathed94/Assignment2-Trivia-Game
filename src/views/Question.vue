@@ -9,7 +9,7 @@
 
 <h1 class="mb-5 text-2xl">Press down below to get a question!</h1>
 
-<form>
+<form @submit.prevent="handleSubmit">
     <!--Button to generate a question from the API-->
     <button type="submit" class="bg-emerald-400 text-white p-2 rounded">Get question</button>
 
