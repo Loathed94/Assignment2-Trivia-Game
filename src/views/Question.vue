@@ -8,7 +8,7 @@
 
 <form>
     <!--Button to generate a question from the API-->
-    <button type="submit">Get question</button>
+    <button type="submit" class="bg-emerald-400 text-white p-2 rounded">Get question</button>
 
     <fieldset>
         <!--Checkbuttons with answers generate from the API-->
@@ -21,7 +21,7 @@
     </fieldset>
 
 <!--Submit the answer and count the points, redirect to result page-->
-<button type="submit" class="bg-blue-500 text-white p-4">Submit answer</button>
+<button type="submit" class="bg-green-400 text-white p-2 rounded">Submit answer</button>
 
 </form>
 </template>
