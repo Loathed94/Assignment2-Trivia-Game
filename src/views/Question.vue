@@ -1,5 +1,12 @@
 <!--Components that are linked to the router-->
 <script setup>
+import {ref} from 'vue';
+
+const firstOption = ref("");
+const secondOption = ref("");
+const thirdOption = ref("");
+const fourthOption = ref("");
+
 </script>
 <template>
 <main class="container mx-auto px-4">
@@ -27,13 +34,13 @@
             id="secondOption"
             v-model="checkedAnswers"/><br>
 
-            <label for="secondOption">Answer number 3</label>
+            <label for="thirdOption">Answer number 3</label>
             <input 
             type="checkbox" 
             id="thirdOption"
             v-model="checkedAnswers"/><br>
             
-            <label for="secondOption">Answer number 4</label>
+            <label for="fourthOption">Answer number 4</label>
             <input 
             type="checkbox" 
             id="fourthOption" 
