@@ -21,7 +21,7 @@
     </fieldset>
 
 <!--Submit the answer and count the points, redirect to result page-->
-<button type="submit">Submit answer</button>
+<button type="submit" class="bg-blue-500 text-white p-4">Submit answer</button>
 
 </form>
 </template>
