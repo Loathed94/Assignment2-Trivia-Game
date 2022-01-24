@@ -1,7 +1,6 @@
 <!--Components that are linked to the router-->
 <script setup>
 </script>
-
 <template>
 <main class="container mx-auto px-4">
 
@@ -20,27 +19,26 @@
             <input 
             type="checkbox" 
             id="firstOption"
-            v-model="checkedNames"/><br>
+            v-model="checkedAnswers"/><br>
 
             <label for="secondOption">Answer number 2</label>
             <input
             type="checkbox" 
             id="secondOption"
-            v-model="checkedNames"/><br>
+            v-model="checkedAnswers"/><br>
 
             <label for="secondOption">Answer number 3</label>
             <input 
             type="checkbox" 
             id="thirdOption"
-            v-model="checkedNames"/><br>
+            v-model="checkedAnswers"/><br>
             
             <label for="secondOption">Answer number 4</label>
             <input 
             type="checkbox" 
             id="fourthOption" 
-            v-model="checkedNames"/>
-        
-
+            v-model="checkedAnswers"/>
+            <br>
         </div>
       </fieldset>  
         <!-- <input type="checkbox" class="block" id="question.name"/>
