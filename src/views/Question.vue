@@ -31,25 +31,25 @@ const fourthOption = ref("");
             <input 
                 type="checkbox" 
                 id="firstOption"
-                v-model="checkedAnswers"/><br>
+                v-model="firstOption"/><br>
 
             <label for="secondOption">Answer number 2</label>
             <input
                 type="checkbox" 
                 id="secondOption"
-                v-model="checkedAnswers"/><br>
+                v-model="secondOption"/><br>
 
             <label for="thirdOption">Answer number 3</label>
             <input 
                 type="checkbox" 
                 id="thirdOption"
-                v-model="checkedAnswers"/><br>
+                v-model="thirdOption"/><br>
             
             <label for="fourthOption">Answer number 4</label>
             <input 
                 type="checkbox" 
                 id="fourthOption" 
-                v-model="checkedAnswers"/>
+                v-model="fourthOption"/>
             <br>
         </div>
       </fieldset>  
