@@ -41,15 +41,9 @@
             <br>
         </div>
       </fieldset>  
-        <!-- <input type="checkbox" class="block" id="question.name"/>
 
-    
-
-Submit the answer and count the points, redirect to result page-->
-<div class="form-group">
+<!-- Submit the answer and count the points, redirect to result page-->
     <button class="btn btn-primary bg-green-400 text-white p-2 rounded">Submit answer</button>
-</div>
-<!-- <button type="submit" class="bg-green-400 text-white p-2 rounded">Submit answer</button> -->
 
 </form>
 </main>
