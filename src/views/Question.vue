@@ -10,6 +10,7 @@
 </script>
 
 <template>
+    <h1 class="mb-3 text-3xl">QUESTION</h1>
 </template>
 
 <style scoped>

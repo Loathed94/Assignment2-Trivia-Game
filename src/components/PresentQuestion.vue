@@ -7,7 +7,6 @@ import { useStore } from 'vuex';
 <template>
 <main class="container mx-auto" px-4>
     <!--Question 1-->
-    <h1 class="mb-3 text-3xl">QUESTION</h1>
     <form>
 
 <!--Checkbox area-->
@@ -22,7 +21,7 @@ import { useStore } from 'vuex';
         <button class = "submitAnswerBtn" type = "submit">Submit answer</button>
       </fieldset>
     </form>
-    
+
     </main>
     <router-view></router-view>
 </template>
