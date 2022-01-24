@@ -2,6 +2,7 @@
 <script setup>
 import {ref} from 'vue';
 
+//Variables linked to the v-model when changes to the answer options are being done
 const firstOption = ref("");
 const secondOption = ref("");
 const thirdOption = ref("");
