@@ -8,6 +8,9 @@ const secondOption = ref("");
 const thirdOption = ref("");
 const fourthOption = ref("");
 
+const onSubmit = async () => {
+}
+
 </script>
 <template>
 <main class="container mx-auto px-4">
@@ -15,16 +18,18 @@ const fourthOption = ref("");
 
 <h1 class="mb-5 text-2xl">Press down below to get a question!</h1>
 
-<form @submit.prevent="handleSubmit">
+<form @submit.prevent="onSubmit">
     <!--Button to generate a question from the API-->
     <button 
         type="submit" 
-        class="bg-emerald-400 text-white p-2 rounded">
+        class="submit bg-emerald-400 text-white p-2 rounded">
         Get question</button>
 
     <fieldset class="mb-5">
+
         <!--Checkbuttons with answers generate from the API-->
-        <label class="block">Question name</label><br>
+        <label 
+        class="block">Question name</label><br>
         <div id="answerCheckbox">
 
             <label for="firstOption">Answer number 1</label>
@@ -56,7 +61,7 @@ const fourthOption = ref("");
 
 <!-- Submit the answer and count the points, redirect to result page-->
     <button 
-        class="btn btn-primary bg-green-400 text-white p-2 rounded">
+        class="submit bg-green-400 text-white p-2 rounded">
         Submit answer</button>
 
 </form>
