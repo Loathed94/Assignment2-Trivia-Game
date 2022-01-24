@@ -3,6 +3,7 @@ import Start from './views/Start.vue'
 import Question from './views/Question.vue';
 import store from "./store";
 
+
 const routes = [
     {
         path: "/",
@@ -10,12 +11,10 @@ const routes = [
         beforeEnter: "nån authGuard-aktig-grej"
     },
     {
-        path:"",
+        path:"/question",
         component: Question,
     }
 ];
-
-
 
 export default createRouter({
     history: createWebHistory(),
