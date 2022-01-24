@@ -12,21 +12,23 @@ import { useStore } from 'vuex';
 <!--Checkbox area-->
       <fieldset class="mb-3">
       <div class = "">
-        <input type="checkbox" id = "checkbox"/>
+        <input 
+          type="checkbox" 
+          id = "checkbox"/>
       </div>  
       </fieldset>
 
 <!--Submit the answer-->
       <fieldset class="mb-3">
-        <button class = "submitAnswerBtn" type = "submit">Submit answer</button>
+        <button 
+          class = "submitAnswerBtn" 
+          type = "submit">Submit answer</button>
       </fieldset>
     </form>
 
     </main>
     <router-view></router-view>
 </template>
-
-
 
 <style scoped>
 
