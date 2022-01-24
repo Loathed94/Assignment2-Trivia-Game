@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import {apiUserRegister, getUsers} from "../api/users";
+import {apiUserRegister} from "../api/users";
 import {useStore} from "vuex"
 
 const store = useStore()
@@ -19,6 +19,8 @@ const onSuccess = user =>{
 
 const onRegister = async () => {
   console.log(username.value);
+  //Anropa först en metod i store.js som kollar efter användaren med get-metoden.
+  //Sen om resultatet visar att user inte fanns, anropa funktionen nedan.
    const user =  await apiUserRegister( username.value);
 
   console.log("success", user)
@@ -26,7 +28,8 @@ const onRegister = async () => {
 };
 const onLogin = async () => {
   console.log(username.value);
-
+  //Anropa först en metod i store.js som kollar efter användaren med get-metoden.
+  //Sen om resultatet visar att user fanns, anropa funktionen nedan.
    const user = await apiUserRegister(username.value);
 
      onSuccess(user)

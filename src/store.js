@@ -18,10 +18,10 @@ export default createStore({
     },
     actions: {
         //Gör api call här
-        async getUsers({commit}){
+        async getUsers({commit}){ //Förvirrande med en funktion som har samma namn som en i users.js
             const [user] = await apiUserRegister();
             commit("setUser", user);
         }
-         
+        //Ha en async-funktion som anropar getUsers i users.js.
     }
 })

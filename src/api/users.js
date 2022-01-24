@@ -3,25 +3,20 @@ import { API_KEY } from "./";
 
 let users = [];
 
-export async function getUsers(username){
-    fetch(`${BASE_URL}/trivia?username=${username}`, {
-        method: 'GET',
-        headers: {
-          'X-API-Key': API_KEY,
-          'Content-Type': 'application/json'
-        },
-    })
-    .then(response => {
-        console.log(response);
-    
-        return response.json();
-    
-    })
+export async function getUsers(username){ //Vi kanske borde döpa alla funktioner i api-mappen till namn med "api" i början, så det blir tydligare.
+    fetch(`${BASE_URL}/trivia?username=${username}`)
+    .then(response => response.json())
     .then(results => {
-        console.log("Results:", results);
-        // console.log("Welcome:", `${username}`)
-        users.push(results)
-        console.log(users)
+        if(results.length === 0){
+          //Return user does not exist.
+        }
+        else{
+          for (const user of results) {
+            if(user.username === username){
+              //Return that user exists.
+            }
+          }
+        }
     })
     .catch(error => {
         console.log(error)
