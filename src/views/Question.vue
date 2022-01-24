@@ -4,13 +4,16 @@
 </script>
 
 <template>
-<h1>Press down below to get a question!</h1>
+<main class="container mx-auto px-4">
+
+
+<h1 class="mb-5">Press down below to get a question!</h1>
 
 <form>
     <!--Button to generate a question from the API-->
     <button type="submit" class="bg-emerald-400 text-white p-2 rounded">Get question</button>
 
-    <fieldset>
+    <fieldset class="mb-5">
         <!--Checkbuttons with answers generate from the API-->
         <label class="block">Question name</label><br>
         <input type="checkbox" class="block" id="question.name"/>
@@ -24,6 +27,7 @@
 <button type="submit" class="bg-green-400 text-white p-2 rounded">Submit answer</button>
 
 </form>
+</main>
 </template>
 
 <style scoped>
