@@ -8,8 +8,14 @@ import { ref } from 'vue';
   const router = useRouter();
   const store = useStore();
 
-  const correctAnswer = ref();
-
+  export default {
+    name: 'question',
+    data() {
+      return {
+        msg: 'Welcome to the questions page'
+      }
+    }
+  }
 </script>
 
 <template>
