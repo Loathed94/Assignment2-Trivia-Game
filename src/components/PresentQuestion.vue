@@ -1,3 +1,4 @@
+<!--Feature components I can add to any view-->
 <script setup>
 
 </script>
