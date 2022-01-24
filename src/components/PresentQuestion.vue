@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 
 import { useStore } from 'vuex';
 const store = useStore();
@@ -8,11 +8,11 @@ const store = useStore();
 <template>
 
 <main class="container mx-auto" px-4>
-    <!--Question 1-->
+    Question 1
     <form @submit.prevent="answerSubmitted">
 
     
-<!--Checkbox area-->
+Checkbox area
     <fieldset class="mb-3">
       <div class = "">
         <input 
@@ -21,7 +21,7 @@ const store = useStore();
       </div>  
     </fieldset>
 
-<!--Submit the answer-->
+Submit the answer
     <fieldset class="mb-3">
       <div class="grid gap-2">
         <button 
@@ -39,4 +39,4 @@ const store = useStore();
 
 <style scoped>
 
-</style>
+</style> -->
