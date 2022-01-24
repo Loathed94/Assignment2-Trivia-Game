@@ -1,21 +1,36 @@
 <script setup>
   import { useStore } from 'vuex';
   import {computed, ref} from "vue";
-
+  const emit = defineEmits(["startGameSuccessful"]);
 
   const store = useStore();
   const categories = computed(() => store.state.categories)
-  /*store.subscribe((mutation, state) => {
-      
-  })*/
-  console.log(categories);
+  const onStartGameClick = async () => {
+    if(checkAcceptableQuantity()){
+      const category = selected.value;
+      const quantityVal = parseInt(quantity.value);
+      const difficultyVal = difficulty.value;
+      const error = await store.dispatch("fetchQuestions", {category, quantityVal, difficultyVal});
+      if(error !== null){
+        fetchError.value = error;
+      }
+      else{
+        emit("startGameSuccessful");
+      }
+    }
+  }
   const selected = ref("");
   const quantity = ref("");
   const difficulty = ref("");
   const quantityError = ref("");
+  const fetchError = ref("");
   const checkAcceptableQuantity = () => {
-    if(parseInt(quantity.value) < 10 || parseInt(quantity.value) > 50){
-      quantityError.value = "There must be between 10 and 50 questions, no more, no fewer!"
+    if(Object.is(parseInt(quantity.value), NaN)){
+      quantityError.value = "Must be a number, duh!"
+      return false;
+    }
+    if(parseInt(quantity.value) > 50){
+      quantityError.value = "There can not be more than 50 questions! Reduce your number!"
       return false;
     }
     else{
@@ -37,7 +52,7 @@
     </select>
   </fieldset>
   <fieldset class="mb-3">
-    <label for="quantity" aria-label="Quantity" class="block">Choose amount between 10 and 50</label>
+    <label for="quantity" aria-label="Quantity" class="block">Choose an amount of questions, max 50</label>
     <input type="tel" id="quantity" placeholder="How many questions?" class="border border-slate-300" v-model="quantity" @change="checkAcceptableQuantity">
   </fieldset>
   <div v-if="quantityError" class="bg-red-500 text-white p-3">
@@ -48,15 +63,19 @@
     <label for="difficulty" aria-label="Difficulty" class="block">Select Difficulty</label>
     <select v-model="difficulty" class="border border-slate-300" id="difficulty">
       <option disabled value="">Please select difficulty</option>
-      <option>Easy</option>
-      <option>Medium</option>
-      <option>Hard</option>
+      <option :value="'easy'">Easy</option>
+      <option :value="'medium'">Medium</option>
+      <option :value="'hard'">Hard</option>
     </select>
   </fieldset>
   <div>
-    <button @click="onRegisterLoginClick('login')" type="button" class="bg-green-500 text-white p-3 rounded">Start game!</button>
+    <button @click="onStartGameClick()" type="button" class="bg-green-500 text-white p-3 rounded">Start game!</button>
   </div>
   </form>
+  <div v-if="fetchError" class="bg-red-500 text-white p-3">
+    <span class="block text-lg mb-3">Error</span>
+    <p>{{fetchError}}</p>
+  </div>
 </template>
 <style scoped>
 
