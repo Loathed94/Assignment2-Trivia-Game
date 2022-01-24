@@ -1,7 +1,8 @@
-import {createRouter, createWebHistory} from "vue-router";
-import store from "./store";
-import Selection from "./views/Selection.vue"
-import Start from "./views/Start.vue"
+import {createRouter, createWebHistory} from 'vue-router';
+import store from './store';
+import Selection from './views/Selection.vue';
+import Question from './views/Question.vue';
+import Start from './views/Start.vue';
 
 const loginGuard = (_to, _from, next) => {
     if(store.state.user){
@@ -31,6 +32,11 @@ const routes = [
         component: Selection,
         beforeEnter: authGuard
     },
+    {
+        path: "/question",
+        component: Question,
+        beforeEnter:authGuard
+    }
 ];
 
 
