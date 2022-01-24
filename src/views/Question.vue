@@ -10,8 +10,12 @@
     <button type="submit">Get question</button>
 
     <fieldset>
-        <label>Question name</label>
+        <label>Question name</label><br>
         <input type="checkbox" id="question.name"/>
+        <input type="checkbox" id="question.name"/>
+        <input type="checkbox" id="question.name"/>
+        <input type="checkbox" id="question.name"/>
+
     </fieldset>
 
 <button type="submit">Submit answer</button>
