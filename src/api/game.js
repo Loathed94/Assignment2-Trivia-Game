@@ -1,4 +1,4 @@
-import {BASE_URL} from './';
+import {BASE_URL_Question_DB} from './';
 
 export async function apiAnswerRegister(answerCheckbox) {
     try {
