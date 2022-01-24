@@ -7,11 +7,11 @@
 <h1>Press down below to get a question!</h1>
 
 <form>
-    <field>
+    <fieldset>
         <button>Get question</button>
         <label>Question name</label>
         <input type="checkbox" id="question.name"/>
-    </field>
+    </fieldset>
 </form>
 </template>
 
