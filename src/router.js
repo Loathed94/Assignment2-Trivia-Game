@@ -1,12 +1,18 @@
 import {createRouter, createWebHistory} from "vue-router";
 import store from "./store";
+import Start from "./views/Start.vue"
+import Selection from "./views/Selection.vue"
+
 
 const routes = [
     {
         path: "/",
-        component: "StartScreen",
-        beforeEnter: "nån authGuard-aktig-grej"
+        component: Start,
     },
+    {
+        path: "/selection",
+        component: Selection
+    }
 ];
 
 
