@@ -12,11 +12,11 @@
 
     <fieldset>
         <!--Checkbuttons with answers generate from the API-->
-        <label>Question name</label><br>
-        <input type="checkbox" id="question.name"/>
-        <input type="checkbox" id="question.name"/>
-        <input type="checkbox" id="question.name"/>
-        <input type="checkbox" id="question.name"/>
+        <label class="block">Question name</label><br>
+        <input type="checkbox" class="block" id="question.name"/>
+        <input type="checkbox" class="block" id="question.name"/>
+        <input type="checkbox" class="block" id="question.name"/>
+        <input type="checkbox" class="block" id="question.name"/>
 
     </fieldset>
 
