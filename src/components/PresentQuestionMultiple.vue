@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue';
+    import {ref} from 'vue';
     const emit = defineEmits(["gameCompletedSuccessful"]);
     const sendAnswer = answer => {
         emit("gameCompletedSuccessful", answer);
@@ -10,25 +10,32 @@ import {ref} from 'vue';
             required: true
         }
     })
-    const correctAnswer = ref(props.question.correct_answer);
-    const incorrectAnswer0 = ref(props.question.incorrect_answers[0]);
-    const incorrectAnswer1 = ref(props.question.incorrect_answers[1]);
-    const incorrectAnswer2 = ref(props.question.incorrect_answers[2]);
+    function shuffleArray(array) {
+        return array.sort( ()=>Math.random()-0.5 );
+    }
+
+const arrayForShuffling = [props.question.correct_answer, props.question.incorrect_answers[0], props.question.incorrect_answers[1], props.question.incorrect_answers[2]];
+const shuffledArray = shuffleArray(arrayForShuffling);
+const firstAnswer = ref(arrayForShuffling[0]);
+const secondAnswer = ref(arrayForShuffling[1]);
+const thirdAnswer = ref(arrayForShuffling[2]);
+const fourthAnswer = ref(arrayForShuffling[3]);
+    
 </script>
 
 <template>
-    <button type="button" @click="sendAnswer(correctAnswer)" 
+    <button type="button" @click="sendAnswer(firstAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded">
-        {{correctAnswer}}</button>
-    <button type="button" @click="sendAnswer(incorrectAnswer0)" 
+        {{firstAnswer}}</button>
+    <button type="button" @click="sendAnswer(secondAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded">
-        {{incorrectAnswer0}}</button>
-    <button type="button" @click="sendAnswer(incorrectAnswer1)" 
+        {{secondAnswer}}</button>
+    <button type="button" @click="sendAnswer(thirdAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded">
-        {{incorrectAnswer1}}</button>
-    <button type="button" @click="sendAnswer(incorrectAnswer2)" 
+        {{thirdAnswer}}</button>
+    <button type="button" @click="sendAnswer(fourthAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded">
-        {{incorrectAnswer2}}</button>
+        {{fourthAnswer}}</button>
 </template>
 
 <style scoped>

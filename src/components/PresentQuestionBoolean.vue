@@ -12,10 +12,17 @@ const props = defineProps({
             type: Object,
             required: true
         }
-    })
-const correctAnswer = ref(props.question.correct_answer);
-const incorrectAnswer = ref(props.question.incorrect_answers[0]);
+})
+function shuffleArray(array) {
+ 
+   return array.sort( ()=>Math.random()-0.5 );
+ 
+}
 
+const arrayForShuffling = [props.question.correct_answer, props.question.incorrect_answers[0]];
+const shuffledArray = shuffleArray(arrayForShuffling);
+const firstAnswer = ref(arrayForShuffling[0]);
+const secondAnswer = ref(arrayForShuffling[1]);
 
 //Variables linked to the v-model when changes to the answer options are being done
 //const pickedOption = ref("");
@@ -23,13 +30,13 @@ const incorrectAnswer = ref(props.question.incorrect_answers[0]);
 </script>
 <template>
     <!--Button to generate a question from the API-->
-    <button type="button" @click="sendAnswer(correctAnswer)" 
+    <button type="button" @click="sendAnswer(firstAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded">
-        {{correctAnswer}}</button>
+        {{firstAnswer}}</button>
 
-    <button type="button" @click="sendAnswer(incorrectAnswer)" 
+    <button type="button" @click="sendAnswer(secondAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded">
-        {{incorrectAnswer}}</button>
+        {{secondAnswer}}</button>
 
 <!-- Generate different amount of buttons regarding what type is chosen; true/false or multiple choice -->
     
