@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import {apiGetUsers, apiUserRegister} from "../api/users";
+//import {apiGetUsers, apiUserRegister} from "../api/users";
 import {useStore} from "vuex"
 
 const store = useStore()
@@ -9,35 +9,39 @@ const username = ref("");
 const password = ref("");
 const displayError = ref("");
 
-const onSuccess = user =>{
+/*const onSuccess = user =>{
   // if(this.$store.state.user){
 
   // }
     store.commit("setUser", user)
     emit("onAuthSuccess")
+}*/
+const onFailure = msg => {
+  console.log(msg) //Bör va ett errormeddelande på vyn.
 }
 
 const onRegister = async () => {
-  console.log(username.value);
-  //Anropa först en metod i store.js som kollar efter användaren med get-metoden.
-     let user = await apiGetUsers( username.value);
-      if(user){
-          onSuccess(user)
-      }else if(!user){
-        user = await apiUserRegister(username.value)
-        console.log("New user created", username.value)
-      }
-  //Sen om resultatet visar att user inte fanns, anropa funktionen nedan.
-   
-   
-  console.log("success", user)
-};
+  const userName = username.value;
+  const user = await store.dispatch("getUsers", { userName});
+  if(user !== null){
+    onFailure(user.username+" already exists!");
+    return;
+  }else if(user === null){
+    const error = await store.dispatch("createUser", {userName});//apiUserRegister(username.value)
+    if(error !== null){
+      onFailure(error);
+      return;
+    }
+  }
+   //console.log("success", user) //User blir skapad nu men skickas inte hit.
+  };
 
 const onLogin = async () => {
-  console.log(username.value);
-  //Anropa först en metod i store.js som kollar efter användaren med get-metoden.
-  //Sen om resultatet visar att user fanns, anropa funktionen nedan.
-       
+  const userName = username.value;
+  const user = await store.dispatch("getUsers", { userName});
+  if(user !== null){
+    store.commit("setUser", user);
+  }
 };
 
 </script>

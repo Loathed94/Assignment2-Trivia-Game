@@ -17,11 +17,27 @@ export default createStore({
        }
     },
     actions: {
-        //Gör api call här
-        async getUsers({commit}){ //Förvirrande med en funktion som har samma namn som en i users.js
-            const user = await apiGetUsers();
-            commit("setUser", user);
+        async getUsers({}, {userName}){
+            const user = await apiGetUsers(userName);
+            console.log("Store:",user);
+            if(user === null){
+                return null;
+            }
+            else{
+                return user;
+            }
+        },
+        async createUser({commit}, {userName}){
+            console.log("Before API: ",userName);
+            const user = await apiUserRegister(userName);
+            console.log("Store: ",user);
+            if(user !== null){
+                commit("setUser", user);
+                return null;
+            }
+            else{
+                return "Creating new user failed, try again!";
+            }
         }
-        //Ha en async-funktion som anropar getUsers i users.js.
     }
 })
