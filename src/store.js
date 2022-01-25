@@ -1,62 +1,25 @@
 import {createStore} from 'vuex';
 import { apiFetchCategories, apiFetchQuestions } from './api/questionDB';
 
+import { apiUserRegister, apiGetUsers } from './api/users';
 
 
 export default createStore({
     state: {
-        user: {
-            username: "Test",
-            highScore: 20,
-        },
+        user: null,
         categories: [],
         questions: [{
-            "category":"Science & Nature",
-            "type":"multiple",
-            "difficulty":"medium",
-            "question":"The humerus, paired radius, and ulna come together to form what joint?",
-            "correct_answer":"Elbow",
-            "incorrect_answers":["Knee","Sholder","Ankle"],
-            "user_answer": "Knee"},
-            {"category":"Science & Nature",
-            "type":"multiple",
-            "difficulty":"medium",
-            "question":"Which of these elements on the Periodic Table is a Noble Gas?",
-            "correct_answer":"Neon",
-            "incorrect_answers":["Potassium","Iodine","Colbalt"],
-            "user_answer": "Neon"},
-            {"category":"Science & Nature",
-            "type":"multiple",
-            "difficulty":"medium",
-            "question":"About how old is Earth?",
-            "correct_answer":"4.5 Billion Years",
-            "incorrect_answers":["3.5 Billion Years","2.5 Billion Years","5.5 Billion Years"],
-            "user_answer": "2.5 Billion Years"},
-            {"category":"Science & Nature",
-            "type":"multiple",
-            "difficulty":"medium",
-            "question":"What do you study if you are studying entomology?",
-            "correct_answer":"Insects",
-            "incorrect_answers":["Humans","the Brain","Fish"],
-            "user_answer": "Fish"},
-            {"category":"Science & Nature",
-            "type":"multiple",
-            "difficulty":"medium",
-            "question":"Approximately how long is a year on Uranus?",
-            "correct_answer":"84 Earth years",
-            "incorrect_answers":["47 Earth years","62 Earth years","109 Earth years"],
-            "user_answer": "84 Earth years"},
-            {"category":"Science & Nature",
-            "type":"multiple",
-            "difficulty":"medium",
-            "question":"The medial meniscus forms which part of what joint in the human body?",
-            "correct_answer":"Knee",
-            "incorrect_answers":["Elbow","Ankle","Shoulder"],
-            "user_answer": "Knee"}]
+       }]
     },
     getters : {
+        user: (state) => {
+            return state.user
+        }
     },
     mutations: {
+        setUser: (state, user) =>{
+            state.user = user
+        },
        setCategories: (state, categories) => {
            state.categories = categories;
        },
@@ -68,6 +31,31 @@ export default createStore({
        }
     },
     actions: {
+        async getUsers({}, {userName}){
+            const user = await apiGetUsers(userName);
+            console.log("Store:",user);
+            if(user === null){
+                return null;
+            }
+            else{
+                localStorage.setItem("user", JSON.stringify(user))
+                return user;
+            }
+        },
+        async createUser({commit}, {userName}){
+            console.log("Before API: ",userName);
+            const user = await apiUserRegister(userName);
+            console.log("Store: ",user);
+            if(user !== null){
+                commit("setUser", user);
+                localStorage.setItem("user", JSON.stringify(user))
+                return null;
+            }
+            else{
+                return "Creating new user failed, try again!";
+            }
+        },
+        
         async fetchCategories({commit}){
             const [categories, error] = await apiFetchCategories();
             if(error !== null){
@@ -93,10 +81,8 @@ export default createStore({
             }
             else if(parseInt(code) === 4){
                 return "ERROR: Reset token and try again.";
-            }
-        },
-        async patchNewHighscore({commit, state}, {highscore}){
-
-        }
+      }
     }
+  }
 })
+    
