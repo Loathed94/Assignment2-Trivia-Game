@@ -4,6 +4,9 @@
 import {ref} from 'vue';
 import { apiAnswerRegister } from '../api/game';
 
+//Add on functions to inform the user
+const emit = defineEmits("onAuthSuccess")
+
 //Variables linked to the v-model when changes to the answer options are being done
 const firstOption = ref("");
 const secondOption = ref("");
@@ -13,15 +16,12 @@ const fourthOption = ref("");
 </script>
 <template>
 
-
-
-
 <form @submit.prevent="onSubmit">
     <!--Button to generate a question from the API-->
     <button 
         type="submit" 
         class="submit bg-emerald-400 text-white p-2 rounded">
-        Get question</button>
+        GET A QUESTION</button>
 
     <fieldset class="mb-5">
 
