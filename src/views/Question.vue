@@ -4,7 +4,11 @@
 </script>
 <template>
 
-<PresentQuestion/>
+    <main class="container mx-auto px-4">
+    <h1 class="mb-5 text-2xl">Press down below to get a question!</h1>
+    <PresentQuestion/>
+    </main>
+    
 </template>
 
 <style scoped>

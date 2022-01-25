@@ -12,10 +12,9 @@ const fourthOption = ref("");
 
 </script>
 <template>
-    <main class="container mx-auto px-4">
 
 
-<h1 class="mb-5 text-2xl">Press down below to get a question!</h1>
+
 
 <form @submit.prevent="onSubmit">
     <!--Button to generate a question from the API-->
@@ -64,7 +63,6 @@ const fourthOption = ref("");
         Submit answer</button>
 
 </form>
-</main>
 </template>
 
 <style scoped>
