@@ -1,6 +1,7 @@
 import {createStore} from 'vuex';
 import { apiUserRegister, apiGetUsers } from './api/users';
 
+
 export default createStore({
     state: {
         user: null
@@ -24,6 +25,7 @@ export default createStore({
                 return null;
             }
             else{
+                localStorage.setItem("user", JSON.stringify(user))
                 return user;
             }
         },
@@ -33,6 +35,7 @@ export default createStore({
             console.log("Store: ",user);
             if(user !== null){
                 commit("setUser", user);
+                localStorage.setItem("user", JSON.stringify(user))
                 return null;
             }
             else{
