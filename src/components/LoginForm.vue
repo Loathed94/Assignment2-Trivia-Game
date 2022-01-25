@@ -9,13 +9,11 @@ const username = ref("");
 const password = ref("");
 const displayError = ref("");
 
-/*const onSuccess = user =>{
-  // if(this.$store.state.user){
+const onSuccess = user =>{
 
-  // }
     store.commit("setUser", user)
     emit("onAuthSuccess")
-}*/
+}
 const onFailure = msg => {
   console.log(msg) //Bör va ett errormeddelande på vyn.
 }
@@ -28,6 +26,7 @@ const onRegister = async () => {
     return;
   }else if(user === null){
     const error = await store.dispatch("createUser", {userName});//apiUserRegister(username.value)
+        emit("onAuthSuccess")
     if(error !== null){
       onFailure(error);
       return;
@@ -41,6 +40,7 @@ const onLogin = async () => {
   const user = await store.dispatch("getUsers", { userName});
   if(user !== null){
     store.commit("setUser", user);
+    onSuccess(user)
   }
 };
 
@@ -72,7 +72,7 @@ const onLogin = async () => {
     <button @click="onRegister" type="button">Register</button>
     <button @click="onLogin" type="button">Login</button>
   </form>
-  <div v-if="displayError">
+  <div v-if="onFailure">
     <p>
       {{displayError}}
     </p>
