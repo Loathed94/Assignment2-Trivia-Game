@@ -31,11 +31,11 @@ const secondAnswer = ref(arrayForShuffling[1]);
 <template>
     <!--Button to generate a question from the API-->
     <button type="button" @click="sendAnswer(firstAnswer)" 
-        class="bg-emerald-400 text-white p-2 rounded">
+        class="bg-emerald-400 text-white p-2 rounded mx-4">
         {{firstAnswer}}</button>
 
     <button type="button" @click="sendAnswer(secondAnswer)" 
-        class="bg-emerald-400 text-white p-2 rounded">
+        class="bg-emerald-400 text-white p-2 rounded mx-4">
         {{secondAnswer}}</button>
 
 <!-- Generate different amount of buttons regarding what type is chosen; true/false or multiple choice -->

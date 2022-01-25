@@ -12,6 +12,7 @@
     const count = ref(0);
     const currentQuestion = ref(questionsList.value[count.value]);
     const typeRef = ref(currentQuestion.value.type);
+    const questionDescription = ref(currentQuestion.value.question);
     const componentKeyBool = ref(1);
     const componentKeyMult = ref(1);
     //valuesReady();
@@ -40,6 +41,7 @@ const registerAnswer = (answer) => {
     else{
         currentQuestion.value = questionsList.value[count.value];
         typeRef.value = currentQuestion.value.type;
+        questionDescription.value = currentQuestion.value.question;
         //console.log(currentQuestion.value);
         //this.$forceUpdate();
         componentKeyBool.value++;
@@ -54,8 +56,8 @@ const registerAnswer = (answer) => {
 </script>
 <template>
 
-    <main class="container mx-auto px-4" >
-        <h1 class="mb-5 text-2xl font-semibold">Questiontime!</h1>
+    <main class="container mx-auto px-10 mt-10" >
+        <h1 class="mb-5 text-2xl font-semibold">{{questionDescription}}</h1>
         <PresentQuestionBoolean v-if="typeRef==='boolean'" @gameCompletedSuccessful="registerAnswer" :question="currentQuestion" :key="componentKeyBool"/>
         <PresentQuestionMultiple v-if="typeRef==='multiple'" @gameCompletedSuccessful="registerAnswer" :question="currentQuestion" :key="componentKeyMult"/> 
     </main>
