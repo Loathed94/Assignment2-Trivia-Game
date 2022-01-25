@@ -3,14 +3,11 @@
 
 import {ref} from 'vue';
 import { apiAnswerRegister } from '../api/game';
-
+const emit = defineEmits(["gameCompletedSuccessful"]);
 
 
 //Variables linked to the v-model when changes to the answer options are being done
-const firstOption = ref("");
-const secondOption = ref("");
-const thirdOption = ref("");
-const fourthOption = ref("");
+const pickedOption = ref("");
 
 </script>
 <template>
@@ -24,34 +21,34 @@ const fourthOption = ref("");
 
     <fieldset class="mb-5">
 
-        <!--Checkbuttons with answers generate from the API-->
+        <!--generate the questions from the API setup in the previous step-->
         <label 
         class="block">Question name</label><br>
         <div id="answerCheckbox">
-
+<!--Checkbuttons with answers generate from the API-->
             <label for="firstOption">Answer number 1</label>
             <input 
-                type="checkbox" 
+                type="radio" 
                 id="firstOption"
-                v-model="firstOption"/><br>
+                v-model="pickedOption"/><br>
 
             <label for="secondOption">Answer number 2</label>
             <input
-                type="checkbox" 
+                type="radio" 
                 id="secondOption"
-                v-model="secondOption"/><br>
+                v-model="pickedOption"/><br>
 
             <label for="thirdOption">Answer number 3</label>
             <input 
-                type="checkbox" 
+                type="radio" 
                 id="thirdOption"
-                v-model="thirdOption"/><br>
+                v-model="pickedOption"/><br>
             
             <label for="fourthOption">Answer number 4</label>
             <input 
-                type="checkbox" 
+                type="radio" 
                 id="fourthOption" 
-                v-model="fourthOption"/>
+                v-model="pickedOption"/>
             <br>
         </div>
       </fieldset>  
