@@ -25,7 +25,7 @@
 
 //function to redirect to Result.vue when clicking submit button
 const handleSubmitButton = () => {
-    router.push('/Result.vue');
+    router.push('/results');
 }
 const registerAnswer = (answer) => {
     const resultObject = {
