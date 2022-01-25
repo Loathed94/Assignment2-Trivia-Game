@@ -11,10 +11,19 @@ const authGuard = (to, from, next) => {
     }
 }
 
+const loginGuard = (_to, _from, next) => {
+    if(localStorage.getItem("user")){
+        next("/selection")
+    }else {
+        next()
+    }
+}
+
 const routes = [
     {
         path: "/",
         component: Start,
+        beforeEnter: loginGuard
     }, 
     {
         path: "/selection",
