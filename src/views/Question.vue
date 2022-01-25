@@ -15,7 +15,7 @@ const handleSubmitButton = () => {
 
     <main class="container mx-auto px-4">
     <h1 class="mb-5 text-2xl font-semibold">Questiontime!</h1>
-    <PresentQuestion/>
+    <PresentQuestion @gameCompletedSuccessful="handleSubmitButton"/>
     </main>
 
 </template>
