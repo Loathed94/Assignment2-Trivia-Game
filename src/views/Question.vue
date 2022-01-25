@@ -1,14 +1,17 @@
 <!--Components that are linked to the router-->
 <script setup>
-    import { useRouter } from 'vue-router';
+    import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
     import PresentQuestion from '../components/PresentQuestion.vue';
     
     const router = useRouter();
 
-//redirect to Result.vue when clicking submit button
+//function to redirect to Result.vue when clicking submit button
 const handleSubmitButton = () => {
     router.push('/Result.vue');
 }
+
+//function to get more radio buttons depending on which type is chosen
     
 </script>
 <template>
