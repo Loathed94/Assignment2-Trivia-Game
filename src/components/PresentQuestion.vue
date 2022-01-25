@@ -4,8 +4,7 @@
 import {ref} from 'vue';
 import { apiAnswerRegister } from '../api/game';
 
-//Add on functions to inform the user
-const emit = defineEmits("onAuthSuccess")
+
 
 //Variables linked to the v-model when changes to the answer options are being done
 const firstOption = ref("");
