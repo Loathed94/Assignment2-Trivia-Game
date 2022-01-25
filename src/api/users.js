@@ -1,4 +1,4 @@
-import {BASE_URL} from "./";
+import {BASE_URL_TRIVIA_API} from "./";
 import { API_KEY } from "./";
 
 //let users = [];
@@ -6,7 +6,7 @@ import { API_KEY } from "./";
 export async function apiGetUsers(userName){
     console.log("GetUsers: ",userName);
     let newUser = null;
-    await fetch(`${BASE_URL}/trivia?username=${userName}`)
+    await fetch(`${BASE_URL_TRIVIA_API}/trivia?username=${userName}`)
     .then(response => response.json())
     .then(results => {
         if(results.length === 0){
@@ -33,7 +33,7 @@ export async function apiGetUsers(userName){
 }
 export  async function apiUserRegister(userName){
 let user;
-await fetch(`${BASE_URL}/trivia`, {
+await fetch(`${BASE_URL_TRIVIA_API}/trivia`, {
     method: 'POST',
     headers: {
         'X-API-Key': API_KEY,
