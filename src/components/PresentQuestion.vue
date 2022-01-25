@@ -24,7 +24,7 @@ const pickedOption = ref("");
         <!--generate the questions from the API setup in the previous step-->
         <label 
         class="block">Question name</label><br>
-        <div id="answerCheckbox">
+        <div id="questionAnswerOptions">
 <!--Checkbuttons with answers generate from the API-->
             <label for="firstOption">Answer number 1</label>
             <input 
