@@ -3,6 +3,8 @@
 
 import {ref} from 'vue';
 import { apiAnswerRegister } from '../api/game';
+import TrueOrFalseQuestion from '../components/TrueOrFalseQuestion.vue';
+import MultipleQuestion from '../components/MultipleQuestion.vue';
 const emit = defineEmits(["gameCompletedSuccessful"]);
 
 
