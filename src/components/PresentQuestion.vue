@@ -5,7 +5,6 @@ import {ref} from 'vue';
 import { apiAnswerRegister } from '../api/game';
 const emit = defineEmits(["gameCompletedSuccessful"]);
 
-const router = useRouter();
 
 
 //Variables linked to the v-model when changes to the answer options are being done
