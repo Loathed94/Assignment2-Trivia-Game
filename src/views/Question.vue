@@ -2,6 +2,14 @@
 <script setup>
     import { useRouter } from 'vue-router';
     import PresentQuestion from '../components/PresentQuestion.vue';
+
+    const router = useRouter();
+
+//redirect to Result.vue when clicking submit button
+const handleSubmitButton = () => {
+    router.push('/Result.vue');
+}
+    
 </script>
 <template>
 
