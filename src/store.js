@@ -6,6 +6,7 @@ import { apiUserRegister, apiGetUsers } from './api/users';
 
 export default createStore({
     state: {
+        results: [],
         user: null,
         categories: [],
         questions: [],
@@ -26,8 +27,8 @@ export default createStore({
        setQuestions: (state, questions) => {
            state.questions = questions;
        },
-       setHighscore: (state, newHighscore) => {
-           state.user.highScore = newHighscore;
+        addResult: (state, result) => {
+           state.results.push(result);
        }
     },
     actions: {
