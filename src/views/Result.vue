@@ -5,16 +5,14 @@ import PresentResults from '../components/PresentResults.vue';
 
 const store = useStore();
 const calculateScore = () => {
-  //console.log(score.value += 10);
   for (const question of results.value) {
-    //console.log(question.correct_answer, question.user_answer);
     if(question.correct_answer === question.user_answer){
       score.value += 10;
     }
   }
 }
 const highscore = computed(() => store.state.user.highScore);
-const results = computed(() => store.state.questions);
+const results = computed(() => store.state.results);
 const score = ref(0);
 calculateScore();
 console.log(score.value);

@@ -8,8 +8,8 @@ export default createStore({
     state: {
         user: null,
         categories: [],
-        questions: [{
-       }]
+        questions: [],
+        results: []
     },
     getters : {
         user: (state) => {
