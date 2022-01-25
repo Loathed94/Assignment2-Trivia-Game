@@ -39,6 +39,7 @@ const registerAnswer = (answer) => {
     }
     else{
         currentQuestion.value = questionsList.value[count.value];
+        typeRef.value = currentQuestion.value.type;
         console.log(currentQuestion.value);
         //this.$forceUpdate();
         componentKeyBool.value++;
