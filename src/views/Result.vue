@@ -36,7 +36,7 @@ const calculateScore = async () => {
 /*const updateHighScore = async () => {
   await apiUpdateHighScore(userId, score.value);
 }*/
-
+console.log("Highscore: ",highscore.value);
 calculateScore();
 console.log(score.value);
 </script>
