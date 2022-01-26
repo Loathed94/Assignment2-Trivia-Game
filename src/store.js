@@ -27,7 +27,8 @@ export default createStore({
     },
     mutations: {
         setUser: (state, user) =>{
-            state.user = user
+            state.user = user;
+            localStorage.setItem("user", JSON.stringify(user));
         },
        setCategories: (state, categories) => {
            state.categories = categories;
@@ -60,7 +61,6 @@ export default createStore({
             console.log("Store: ",user);
             if(user !== null){
                 commit("setUser", user);
-                localStorage.setItem("user", JSON.stringify(user))
                 return null;
             }
             else{
@@ -95,9 +95,10 @@ export default createStore({
                 return "ERROR: Reset token and try again.";
       }
     },
-    async updateScore({commit, state}, {score}){
-        console.log("Score in store",score);
-        const updatedUser = await apiUpdateHighScore(state.user.id, score);
+    async updateScore({commit, state}, score){
+        const finalScore = score;
+        console.log("Score in store",finalScore);
+        const updatedUser = await apiUpdateHighScore(state.user.id, finalScore);
         console.log("Score after fetch",score);
         console.log(updatedUser);
         if(updatedUser.id === state.user.id){
