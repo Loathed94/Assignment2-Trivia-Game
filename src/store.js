@@ -26,7 +26,8 @@ export default createStore({
     },
     mutations: {
         setUser: (state, user) =>{
-            state.user = user
+            state.user = user;
+            localStorage.setItem("user", JSON.stringify(user));
         },
        setCategories: (state, categories) => {
            state.categories = categories;
@@ -56,7 +57,6 @@ export default createStore({
             const user = await apiUserRegister(userName);
             if(user !== null){
                 commit("setUser", user);
-                localStorage.setItem("user", JSON.stringify(user))
                 return null;
             }
             else{
@@ -104,9 +104,10 @@ export default createStore({
                 return error.message;
             }
     },
-    async updateScore({commit, state}, {score}){
-        console.log("Score in store",score);
-        const updatedUser = await apiUpdateHighScore(state.user.id, score);
+    async updateScore({commit, state}, score){
+        const finalScore = score;
+        console.log("Score in store",finalScore);
+        const updatedUser = await apiUpdateHighScore(state.user.id, finalScore);
         console.log("Score after fetch",score);
         console.log(updatedUser);
         if(updatedUser.id === state.user.id){
