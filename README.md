@@ -22,17 +22,17 @@ The user can press a button to return to the start screen or replat with differe
 ## Getting started
 
 ### Dependencies
-- NPM/Node.js (LTS - Long Term Support Version)
-- [Vue-3 setup] (https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup)
+- [NPM/Node.js (LTS - Long Term Support Version)](https://nodejs.org/en/)
+- [Vue-3 setup](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup)
 - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 - Vue CLI
-- Tailwind
-- [Visual Studio Code] (https://code.visualstudio.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
 
 ### Installing
 
 The project:
-- [Trivia Game] (https://github.com/Loathed94/Assignment2-Trivia-Game)
+- [Trivia Game](https://github.com/Loathed94/Assignment2-Trivia-Game)
 
 
 Install Tailwind. Use the Command Prompt or similar:
@@ -70,15 +70,15 @@ npm run dev
 
 ## Authors
 
-[@Loathed94] https://github.com/Loathed94
-[@TheNeonLeon] https://github.com/TheNeonLeon
-[@Haruberi] https://github.com/Haruberi
+[@Loathed94](https://github.com/Loathed94)
+[@TheNeonLeon](https://github.com/TheNeonLeon)
+[@Haruberi](https://github.com/Haruberi)
 
 ## License
 No license.
 
 ## Acknowledgments
-- [figma] (https://www.figma.com/file/AbxxOC37oT8ktKakbnYzOS/Assignment-2-Figma?node-id=0%3A1)
-- [tailwind] (https://tailwindcss.com/)
-- [heroku] (https://www.heroku.com/)
-- [readme-remplate] (https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
+- [Figma](https://www.figma.com/file/AbxxOC37oT8ktKakbnYzOS/Assignment-2-Figma?node-id=0%3A1)
+- [Tailwind](https://tailwindcss.com/)
+- [Heroku](https://www.heroku.com/)
+- [readme-remplate](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
