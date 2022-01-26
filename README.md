@@ -8,7 +8,9 @@ Used the Vue-js framework to build the following screens into this trivia game:
 
 - The start screen
 Where the application starts.
-Capture an username using an input.
+Capture a username using an input. Register if new, login if username already exists.
+
+- The selection screen
 The user select the difficulty, number of questions and category.
 The user click on a button to start playing.
 
