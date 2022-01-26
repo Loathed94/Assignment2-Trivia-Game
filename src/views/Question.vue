@@ -15,13 +15,6 @@
     const questionDescription = ref(currentQuestion.value.question);
     const componentKeyBool = ref(1);
     const componentKeyMult = ref(1);
-    //valuesReady();
-    /*const valuesReady = () => {
-        if(currentQuestion === undefined){
-            return false;
-        }
-        return true;
-    }*/
 
 //function to redirect to Result.vue when clicking submit button
 const handleSubmitButton = () => {
@@ -57,7 +50,7 @@ const registerAnswer = (answer) => {
 <template>
 
     <main class="container mx-auto px-10 mt-10" >
-        <h1 class="mb-5 text-2xl font-semibold">{{questionDescription}}</h1>
+        <h1 class="mb-5 text-2xl font-semibold" v-html="questionDescription"></h1>
         <PresentQuestionBoolean v-if="typeRef==='boolean'" @gameCompletedSuccessful="registerAnswer" :question="currentQuestion" :key="componentKeyBool"/>
         <PresentQuestionMultiple v-if="typeRef==='multiple'" @gameCompletedSuccessful="registerAnswer" :question="currentQuestion" :key="componentKeyMult"/> 
     </main>

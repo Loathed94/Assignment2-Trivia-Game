@@ -1,5 +1,5 @@
 import {createStore} from 'vuex';
-import { apiFetchCategories, apiFetchQuestions } from './api/questionDB';
+import { apiFetchCategories, apiFetchQuestions, apiRequestToken, apiResetToken } from './api/questionDB';
 
 import { apiUserRegister, apiGetUsers } from './api/users';
 
@@ -9,7 +9,8 @@ export default createStore({
         results: [],
         user: null,
         categories: [],
-        questions: []
+        questions: [],
+        token: null
     },
     getters : {
         user: (state) => {
@@ -28,12 +29,14 @@ export default createStore({
        },
         addResult: (state, result) => {
            state.results.push(result);
+       },
+       setToken: (state, token) => {
+           state.token = token;
        }
     },
     actions: {
         async getUsers({}, {userName}){
             const user = await apiGetUsers(userName);
-            console.log("Store:",user);
             if(user === null){
                 return null;
             }
@@ -43,9 +46,7 @@ export default createStore({
             }
         },
         async createUser({commit}, {userName}){
-            console.log("Before API: ",userName);
             const user = await apiUserRegister(userName);
-            console.log("Store: ",user);
             if(user !== null){
                 commit("setUser", user);
                 localStorage.setItem("user", JSON.stringify(user))
@@ -64,25 +65,43 @@ export default createStore({
             commit("setCategories", categories);
             localStorage.setItem("categories", JSON.stringify(categories));
         },
-        async fetchQuestions({commit}, {category, quantityVal, difficultyVal}){
-            const [code, results] = await apiFetchQuestions(category, quantityVal, difficultyVal);
-            if(parseInt(code) === 0){
+        async fetchQuestions({commit, state}, {category, quantityVal, difficultyVal}){
+            const [code, results] = await apiFetchQuestions(category, quantityVal, difficultyVal, state.token);
+            if(code === 0){
                 commit("setQuestions", results);
-                return null;
+                return 0;
             }
-            else if(parseInt(code) === 1){
-                return "ERROR: Too many questions, try reducing amount of questions or change one of the other settings.";
+            else if(code === 4){
+                const [newCode, results] = await apiFetchQuestions(category, quantityVal, difficultyVal, null);
+                if(newCode === 1){
+                    return 1;
+                }
+                else{
+                    return 4;
+                }
             }
-            else if(parseInt(code) === 2){
-                return "ERROR: Developer fucked up, request sent was invalid.";
+            else{
+                return code;
             }
-            else if(parseInt(code) === 3){
-                return "ERROR: Token invalid.";
+        },
+        async fetchToken({commit}){
+            try {
+                const [code, token] = await apiRequestToken();
+                if(token === "" || token === undefined || code !== 0){
+                    throw new Error("Unforeseen token-error!")
+                }
+                commit('setToken', token);
+                localStorage.setItem("token", token);
+                return;
+            } catch (error) {
+                return error.message;
             }
-            else if(parseInt(code) === 4){
-                return "ERROR: Reset token and try again.";
-      }
+        },
+        async resetToken({commit, state}){
+            const code = await apiResetToken(state.token);
+            console.log("Token code ",code);
+            return code;
+        }
     }
-  }
 })
     

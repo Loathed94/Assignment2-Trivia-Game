@@ -10,11 +10,10 @@ const displayError = ref("");
 
 const onSuccess = user =>{
 
-    store.commit("setUser", user)
     emit("onAuthSuccess")
 }
 const onFailure = msg => {
-  console.log(msg) //Bör va ett errormeddelande på vyn.
+  //console.log(msg) //Bör va ett errormeddelande på vyn.
   displayError.value = msg
 }
 

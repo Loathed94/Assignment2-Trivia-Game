@@ -9,6 +9,14 @@
 
     onMounted(async () => {
         await store.dispatch("fetchCategories");
+        if(localStorage.getItem("token") === null){
+            await store.dispatch("fetchToken");
+        }
+        else{
+            store.commit('setToken', localStorage.getItem("token"));
+            console.log(store.state.token);
+            console.log(localStorage.getItem("token"))
+        }
     })
     const viewQuestion = () => {
         router.push("/questions");
