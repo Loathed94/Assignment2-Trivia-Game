@@ -17,6 +17,7 @@ const score = ref(0);
 
 const backToStart = () => {
   router.push('/selection')
+  score.value *= 0
 }
 
 let highscore = computed(() => store.state.highScore);

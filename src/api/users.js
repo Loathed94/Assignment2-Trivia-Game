@@ -60,16 +60,17 @@ await fetch(`${BASE_URL_TRIVIA_API}/trivia`, {
 return user
 }
 
-export async function apiUpdateHighScore(userId){
+export async function apiUpdateHighScore(userId, score){
+  let user;
   fetch(`${BASE_URL_TRIVIA_API}/trivia/${userId}`, {
     method: 'PATCH', // NB: Set method to PATCH
     headers: {
-        'X-API-Key': API_KEY,
+      'X-API-Key': API_KEY,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
         // Provide new highScore to add to user with id 1
-        highScore: 10
+        highScore: score
     })
 })
 .then(response => {
@@ -81,9 +82,12 @@ export async function apiUpdateHighScore(userId){
 .then(updatedUser => {
   // updatedUser is the user with the Patched data
   console.log(updatedUser);
+  user = updatedUser
+  
 })
 .catch(error => {
 })
+return user
 }
 
 
