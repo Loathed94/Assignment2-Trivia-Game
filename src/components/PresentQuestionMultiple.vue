@@ -1,6 +1,9 @@
 <script setup>
     import {ref} from 'vue';
+    
     const emit = defineEmits(["gameCompletedSuccessful"]);
+
+    //send answer upon game completion
     const sendAnswer = answer => {
         emit("gameCompletedSuccessful", answer);
     }
@@ -10,10 +13,12 @@
             required: true
         }
     })
+    //shuffle algorithm 
     function shuffleArray(array) {
         return array.sort( ()=>Math.random()-0.5 );
     }
 
+//variables for shuffle and the respective buttons for multiple questions
 const arrayForShuffling = [props.question.correct_answer, props.question.incorrect_answers[0], props.question.incorrect_answers[1], props.question.incorrect_answers[2]];
 const shuffledArray = shuffleArray(arrayForShuffling);
 const firstAnswer = ref(arrayForShuffling[0]);

@@ -1,8 +1,7 @@
 import {BASE_URL_TRIVIA_API} from "./";
 import { API_KEY } from "./";
 
-//let users = [];
-
+//fetch user from database function
 export async function apiGetUsers(userName){
     console.log("GetUsers: ",userName);
     let newUser = null;
@@ -31,6 +30,8 @@ export async function apiGetUsers(userName){
     })
     return newUser;
 }
+
+//Post the user to the database upon registering
 export  async function apiUserRegister(userName){
 let user;
 await fetch(`${BASE_URL_TRIVIA_API}/trivia`, {
@@ -60,6 +61,7 @@ await fetch(`${BASE_URL_TRIVIA_API}/trivia`, {
 return user
 }
 
+//update the highscore on user with PATCH 
 export async function apiUpdateHighScore(userId, score){
   let user;
   console.log("Score to be patched: ",score, "User: ", userId);
