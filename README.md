@@ -28,7 +28,7 @@ The user can press a button to return to the start screen or replay with differe
 - [Vue-3 setup](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup)
 - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 - Vue CLI
-- Vuex
+- [Vuex](https://vuex.vuejs.org/#what-is-a-state-management-pattern)
 - Vue-Router
 - [Tailwind](https://tailwindcss.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -59,9 +59,9 @@ npm install
 ```
 code .
 ```
-Open in Visual Studio Code, run in Terminal:
+Open in Visual Studio Code, run in terminal:
 ```
-npm i vue-router@4
+npm install vue-router@4
 ```
 ```
 npm install vuex@4
@@ -74,9 +74,9 @@ npm run dev
 
 ## Authors
 
-[@Loathed94](https://github.com/Loathed94)
-[@TheNeonLeon](https://github.com/TheNeonLeon)
-[@Haruberi](https://github.com/Haruberi)
+[@Loathed94](https://github.com/Loathed94) - Christian Neij
+[@TheNeonLeon](https://github.com/TheNeonLeon) - Leon Listo
+[@Haruberi](https://github.com/Haruberi) - Anna Hallberg
 
 ## License
 No license.
