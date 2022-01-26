@@ -7,9 +7,10 @@ import router from '../router';
 const store = useStore();
 const score = ref(0);
 
-const backToStart = () => {
+const replayGame = () => {
   score.value *= 0
-  router.push('/selection')
+  store.commit('clearResults')
+  router.push('/questions')
 }
 
 const highscore = store.state.user.highScore;
@@ -36,9 +37,33 @@ const calculateScore = async () => {
 /*const updateHighScore = async () => {
   await apiUpdateHighScore(userId, score.value);
 }*/
-console.log("Highscore: ",highscore.value);
 calculateScore();
-console.log(score.value);
+const onReplayClick = async () => {
+  const settings = JSON.parse(localStorage.getItem('question-settings'));
+  console.log(settings);
+      const category = settings.category;
+      const quantityVal = settings.amount;
+      const difficultyVal = settings.difficulty;
+      let code = 1;
+      while(code !== 0){
+        code = await store.dispatch("fetchQuestions", {category, quantityVal, difficultyVal});
+        if(code === 3){ //Token invalid.
+          console.log("Token invalid.")
+          const resultingCode = await store.dispatch("fetchToken");
+        }
+        else if(code === 4){
+          console.log("Token reset required.")
+          const resultingCode = await store.dispatch('resetToken');
+          if(resultingCode !== 0){
+            console.log("Token reset -> fetch new.")
+            await store.dispatch("fetchToken");
+          }
+        }
+      }
+      //localStorage.setItem('question-settings', JSON.stringify({category: category, amount: quantityVal, difficulty: difficultyVal}));
+      //emit("startGameSuccessful");
+      replayGame();
+  }
 </script>
 
 <template>
@@ -49,7 +74,7 @@ console.log(score.value);
   <div>Current highscore: {{highscore}}</div>
   <div>Total score from game session: {{score}}</div>
   <div v-if="score>highscore">New highscore achieved! Highscore will be updated!</div>
-  <button class="bg-emerald-400 text-white p-2 rounded mx-2" @click="backToStart">Replay</button>
+  <button class="bg-emerald-400 text-white p-2 rounded mx-2" @click="onReplayClick">Replay</button>
 </template>
 
 <style scoped>

@@ -38,6 +38,7 @@
           fetchError.value = "ERROR: We don't even know what the hell happened!";
         }
       }
+      localStorage.setItem('question-settings', JSON.stringify({category: category, amount: quantityVal, difficulty: difficultyVal}));
       emit("startGameSuccessful");
     }
   }

@@ -40,6 +40,9 @@ export default createStore({
        },
        setToken: (state, token) => {
            state.token = token;
+       },
+       clearResults: (state) => {
+           state.results = [];
        }
     },
     actions: {
