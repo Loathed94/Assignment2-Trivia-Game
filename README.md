@@ -57,7 +57,7 @@ code .
 ```
 Open in Visual Studio Code, run in Terminal:
 ```
-npm i vue-route@4
+npm i vue-router@4
 ```
 ```
 npm install vuex@4
