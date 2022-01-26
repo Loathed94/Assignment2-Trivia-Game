@@ -12,7 +12,7 @@ const backToStart = () => {
   router.push('/selection')
 }
 
-const highscore = computed(() => store.state.highScore);
+const highscore = store.state.user.highScore;
 const results = computed(() => store.state.results);
 
 const calculateScore = async () => {
@@ -23,7 +23,7 @@ const calculateScore = async () => {
       //store.dispatch("updateScore", { score});
     }
   }
-  if(score.value > highscore.value){
+  if(score.value > highscore){
     console.log("Score before final",score.value);
     const finalScore = score.value;
     console.log("Final score: ",finalScore);
