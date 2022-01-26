@@ -15,13 +15,6 @@
     const questionDescription = ref(currentQuestion.value.question);
     const componentKeyBool = ref(1);
     const componentKeyMult = ref(1);
-    //valuesReady();
-    /*const valuesReady = () => {
-        if(currentQuestion === undefined){
-            return false;
-        }
-        return true;
-    }*/
 
 //function to redirect to Result.vue when clicking submit button
 const handleSubmitButton = () => {

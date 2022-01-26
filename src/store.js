@@ -3,11 +3,18 @@ import { apiFetchCategories, apiFetchQuestions } from './api/questionDB';
 
 import { apiUserRegister, apiGetUsers, apiUpdateHighScore } from './api/users';
 
+const initUser = () => {
+    const storedUser = localStorage.getItem("user");
+    if(!storedUser){
+        return null;
+    }
+    return JSON.parse(storedUser);
+}
 
 export default createStore({
     state: {
         results: [],
-        user: null,
+        user: initUser(),
         categories: [],
         questions: [],
         results: [],
@@ -32,7 +39,7 @@ export default createStore({
            state.results.push(result);
        },
        setHighScore: (state, highScore) => {
-           state.highScore = highScore
+           state.user.highScore = highScore
        }
     },
     actions: {
@@ -88,12 +95,21 @@ export default createStore({
                 return "ERROR: Reset token and try again.";
       }
     },
-    async updateScore({commit}, {userId}){
-        const userHighScore = await apiUpdateHighScore(userId);
-        if(userHighScore == 0){
-            commit("setHighScore", userHighScore)
+    async updateScore({commit, state}, {score}){
+        console.log(state.user);
+        const updatedUser = await apiUpdateHighScore(state.user.id, score);
+        console.log(updatedUser);
+        if(updatedUser.id === state.user.id){
+            commit('setUser', updatedUser);
+            return true;
         }
-    }
+        else{
+            return false;
+        }
+        /*if(userHighScore == 0){
+            commit("setHighScore", userHighScore)
+        }*/
+    },
   }
 })
     

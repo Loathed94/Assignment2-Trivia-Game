@@ -2,39 +2,37 @@
 import { useStore } from 'vuex';
 import {computed, ref} from "vue";
 import PresentResults from '../components/PresentResults.vue';
-import { apiUpdateHighScore } from '../api/users';
 import router from '../router';
 
 const store = useStore();
 const score = ref(0);
 
-    const props = defineProps({
-        results: {
-            type: Object,
-            required: true
-        }
-    })
-
 const backToStart = () => {
-  router.push('/selection')
   score.value *= 0
+  router.push('/selection')
 }
 
-let highscore = computed(() => store.state.highScore);
+const highscore = computed(() => store.state.highScore);
 const results = computed(() => store.state.results);
 
-const calculateScore = () => {
+const calculateScore = async () => {
   for (const question of results.value) {
     if(question.correct_answer === question.user_answer){
       score.value += 10;
-      highscore += score.value
-      store.dispatch("updateScore", { score});
+      //highscore += score.value
+      //store.dispatch("updateScore", { score});
+    }
+  }
+  if(score.value > highscore.value){
+    const success = await store.dispatch('updateScore', score.value);
+    if(!success){
+      throw new Error("Failed to update user score!");
     }
   }
 }
-const updateHighScore = async () => {
+/*const updateHighScore = async () => {
   await apiUpdateHighScore(userId, score.value);
-}
+}*/
 
 calculateScore();
 console.log(score.value);
@@ -47,6 +45,7 @@ console.log(score.value);
   </ul>
   <div>Current highscore: {{highscore}}</div>
   <div>Total score from game session: {{score}}</div>
+  <div v-if="score>highscore">New highscore achieved! Highscore will be updated!</div>
   <button class="bg-emerald-400 text-white p-2 rounded mx-2" @click="backToStart">Replay</button>
 </template>
 
