@@ -24,7 +24,10 @@ const calculateScore = async () => {
     }
   }
   if(score.value > highscore.value){
-    const success = await store.dispatch('updateScore', score.value);
+    console.log("Score before final",score.value);
+    const finalScore = score.value;
+    console.log("Final score: ",finalScore);
+    const success = await store.dispatch('updateScore', {finalScore});
     if(!success){
       throw new Error("Failed to update user score!");
     }

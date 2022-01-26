@@ -96,8 +96,9 @@ export default createStore({
       }
     },
     async updateScore({commit, state}, {score}){
-        console.log(state.user);
+        console.log("Score in store",score);
         const updatedUser = await apiUpdateHighScore(state.user.id, score);
+        console.log("Score after fetch",score);
         console.log(updatedUser);
         if(updatedUser.id === state.user.id){
             commit('setUser', updatedUser);

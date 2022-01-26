@@ -60,9 +60,9 @@ await fetch(`${BASE_URL_TRIVIA_API}/trivia`, {
 return user
 }
 
-export async function apiUpdateHighScore(userId, highScore){
+export async function apiUpdateHighScore(userId, score){
   let user;
-  console.log("Score to be patched: ",highScore);
+  console.log("Score to be patched: ",score, "User: ", userId);
   await fetch(`${BASE_URL_TRIVIA_API}/trivia/${userId}`, {
     method: 'PATCH', // NB: Set method to PATCH
     headers: {
@@ -71,7 +71,7 @@ export async function apiUpdateHighScore(userId, highScore){
     },
     body: JSON.stringify({
         // Provide new highScore to add to user with id 1
-        highScore: highScore
+        highScore: score
     })
 })
 .then(response => {
