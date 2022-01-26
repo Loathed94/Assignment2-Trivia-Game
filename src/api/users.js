@@ -60,4 +60,30 @@ await fetch(`${BASE_URL_TRIVIA_API}/trivia`, {
 return user
 }
 
+export async function apiUpdateHighScore(userId){
+  fetch(`${BASE_URL_TRIVIA_API}/trivia/${userId}`, {
+    method: 'PATCH', // NB: Set method to PATCH
+    headers: {
+        'X-API-Key': API_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        // Provide new highScore to add to user with id 1
+        highScore: 10
+    })
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Could not update high score')
+  }
+  return response.json()
+})
+.then(updatedUser => {
+  // updatedUser is the user with the Patched data
+  console.log(updatedUser);
+})
+.catch(error => {
+})
+}
+
 

@@ -1,7 +1,7 @@
 import {createStore} from 'vuex';
 import { apiFetchCategories, apiFetchQuestions } from './api/questionDB';
 
-import { apiUserRegister, apiGetUsers } from './api/users';
+import { apiUserRegister, apiGetUsers, apiUpdateHighScore } from './api/users';
 
 
 export default createStore({
@@ -10,7 +10,8 @@ export default createStore({
         user: null,
         categories: [],
         questions: [],
-        results: []
+        results: [],
+        highScore: 0
     },
     getters : {
         user: (state) => {
@@ -29,6 +30,9 @@ export default createStore({
        },
         addResult: (state, result) => {
            state.results.push(result);
+       },
+       setHighScore: (state, highScore) => {
+           state.highScore = highScore
        }
     },
     actions: {
@@ -83,6 +87,12 @@ export default createStore({
             else if(parseInt(code) === 4){
                 return "ERROR: Reset token and try again.";
       }
+    },
+    async updateScore({commit}, {userId}){
+        const userHighScore = await apiUpdateHighScore(userId);
+        if(userHighScore == 0){
+            commit("setHighScore", userHighScore)
+        }
     }
   }
 })

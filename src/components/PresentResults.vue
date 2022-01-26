@@ -10,7 +10,6 @@ const store = useStore()
         }
     })
     const results = computed(() => store.state.results);
-
     const test = [ results.incorrect_answers, results.incorrect_answers, results.incorrect_answers];
 const firstAnswer = ref(test[0]);
 
