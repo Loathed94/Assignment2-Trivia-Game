@@ -1,9 +1,11 @@
 <script setup>
+//Imports
 import LoginForm from '../components/LoginForm.vue';
 import {useRouter} from "vue-router";
 const router = useRouter()
+
+//Function to handle auth
 const handleAuthSuccess = () =>{
-  //console.log("user is available")
   router.push("/Selection")
 }
 </script>

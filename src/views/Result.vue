@@ -1,12 +1,15 @@
 <script setup>
+//Imports
 import { useStore } from 'vuex';
 import {computed, ref} from "vue";
 import PresentResults from '../components/PresentResults.vue';
 import router from '../router';
 
+//Variables
 const store = useStore();
 const score = ref(0);
 
+//Function to replay the game with new questions, return to the start of questions page
 const replayGame = () => {
   score.value *= 0
   store.commit('clearResults')
@@ -16,12 +19,11 @@ const replayGame = () => {
 const highscore = store.state.user.highScore;
 const results = computed(() => store.state.results);
 
+//Function to calculate the score
 const calculateScore = async () => {
   for (const question of results.value) {
     if(question.correct_answer === question.user_answer){
       score.value += 10;
-      //highscore += score.value
-      //store.dispatch("updateScore", { score});
     }
   }
   if(score.value > highscore){
@@ -34,10 +36,9 @@ const calculateScore = async () => {
     }
   }
 }
-/*const updateHighScore = async () => {
-  await apiUpdateHighScore(userId, score.value);
-}*/
 calculateScore();
+
+//Function to replay the game when clicking the replay button
 const onReplayClick = async () => {
   const settings = JSON.parse(localStorage.getItem('question-settings'));
   console.log(settings);
@@ -47,7 +48,7 @@ const onReplayClick = async () => {
       let code = 1;
       while(code !== 0){
         code = await store.dispatch("fetchQuestions", {category, quantityVal, difficultyVal});
-        if(code === 3){ //Token invalid.
+        if(code === 3){ 
           console.log("Token invalid.")
           const resultingCode = await store.dispatch("fetchToken");
         }
@@ -60,10 +61,9 @@ const onReplayClick = async () => {
           }
         }
       }
-      //localStorage.setItem('question-settings', JSON.stringify({category: category, amount: quantityVal, difficulty: difficultyVal}));
-      //emit("startGameSuccessful");
       replayGame();
   }
+  //Function for not be able to replay, return to the selection page
   const onBackToStartClick = () => {
     localStorage.removeItem('question-settings');
     score.value *= 0;

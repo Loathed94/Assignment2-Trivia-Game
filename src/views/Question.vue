@@ -1,11 +1,12 @@
-<!--Components that are linked to the router-->
 <script setup>
+    //Imports
     import { computed, onMounted, ref } from 'vue';
     import { useRouter } from 'vue-router';
     import { useStore } from 'vuex';
     import PresentQuestionBoolean from '../components/PresentQuestionBoolean.vue';
     import PresentQuestionMultiple from '../components/PresentQuestionMultiple.vue';
     
+    //Variables
     const store = useStore();
     const router = useRouter();
     const questionsList = computed(() => store.state.questions);
@@ -16,10 +17,12 @@
     const componentKeyBool = ref(1);
     const componentKeyMult = ref(1);
 
-//function to redirect to Result.vue when clicking submit button
+//Function to continue to results when clicking the submit button
 const handleSubmitButton = () => {
     router.push('/results');
 }
+
+//Function to register answer
 const registerAnswer = (answer) => {
     const resultObject = {
         question: currentQuestion.value.question,
@@ -35,17 +38,10 @@ const registerAnswer = (answer) => {
         currentQuestion.value = questionsList.value[count.value];
         typeRef.value = currentQuestion.value.type;
         questionDescription.value = currentQuestion.value.question;
-        //console.log(currentQuestion.value);
-        //this.$forceUpdate();
         componentKeyBool.value++;
         componentKeyMult.value++;
-        //currentQuestion.value = questionsList.value[count.value];
-        //type = currentQuestion.value.type;
     }
-}
-
-//function to get more radio buttons depending on which type is chosen
-    
+}    
 </script>
 <template>
 

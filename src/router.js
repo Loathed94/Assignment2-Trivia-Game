@@ -1,4 +1,4 @@
-
+//Imports
 import {createRouter, createWebHistory} from "vue-router";
 import store from "./store";
 import Start from "./views/Start.vue"
@@ -6,6 +6,7 @@ import Question from './views/Question.vue';
 import Selection from "./views/Selection.vue"
 import Result from './views/Result.vue';
 
+//Function to not return to start screen if you aren't in user storage
 const authGuard = (to, from, next) => {
     if(!localStorage.getItem("user")){
         next("/")
@@ -14,6 +15,7 @@ const authGuard = (to, from, next) => {
     }
 }
 
+//Function to if user ir registered, you return to the selection screen and not login screen
 const loginGuard = (_to, _from, next) => {
     if(localStorage.getItem("user")){
         next("/selection")

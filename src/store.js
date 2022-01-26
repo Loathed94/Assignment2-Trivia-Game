@@ -1,8 +1,10 @@
+//Imports
 import {createStore} from 'vuex';
 import { apiFetchCategories, apiFetchQuestions, apiRequestToken, apiResetToken } from './api/questionDB';
 
 import { apiUserRegister, apiGetUsers, apiUpdateHighScore } from './api/users';
 
+//Function to every time you refresh, you don't have to log in again
 const initUser = () => {
     const storedUser = localStorage.getItem("user");
     if(!storedUser){
@@ -11,6 +13,7 @@ const initUser = () => {
     return JSON.parse(storedUser);
 }
 
+//Global state
 export default createStore({
     state: {
         results: [],
@@ -46,6 +49,8 @@ export default createStore({
        }
     },
     actions: {
+        
+        //Function to get user
         async getUsers({}, {userName}){
             const user = await apiGetUsers(userName);
             if(user === null){
@@ -56,6 +61,8 @@ export default createStore({
                 return user;
             }
         },
+
+        //Function to create user
         async createUser({commit}, {userName}){
             const user = await apiUserRegister(userName);
             if(user !== null){
@@ -67,6 +74,7 @@ export default createStore({
             }
         },
         
+        //Function to fetch categories
         async fetchCategories({commit}){
             const [categories, error] = await apiFetchCategories();
             if(error !== null){
@@ -75,6 +83,8 @@ export default createStore({
             commit("setCategories", categories);
             localStorage.setItem("categories", JSON.stringify(categories));
         },
+
+        //Function to fetch questions
         async fetchQuestions({commit, state}, {category, quantityVal, difficultyVal}){
             const [code, results] = await apiFetchQuestions(category, quantityVal, difficultyVal, state.token);
             if(code === 0){
@@ -94,6 +104,8 @@ export default createStore({
                 return code;
             }
         },
+
+        //Function to fetch tokens
         async fetchToken({commit}){
             try {
                 const [code, token] = await apiRequestToken();
@@ -107,6 +119,8 @@ export default createStore({
                 return error.message;
             }
         },
+
+        //Function to update score
         async updateScore({commit, state}, score){
             const finalScore = score;
             console.log("Score in store",finalScore);
@@ -121,6 +135,8 @@ export default createStore({
                 return false;
             }
         },
+
+        //Function to reset token
         async resetToken({commit, state}){
             const code = await apiResetToken(state.token);
             console.log("Token code ",code);

@@ -1,12 +1,15 @@
 <script setup>
+    //Imports
     import { onMounted } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
     import SelectionItems from '../components/SelectionItems.vue';
 
+    //Variables
     const router = useRouter();
     const store = useStore();
 
+    //Function to fetch categories of questions
     onMounted(async () => {
         await store.dispatch("fetchCategories");
         if(localStorage.getItem("token") === null){
@@ -18,6 +21,7 @@
             console.log(localStorage.getItem("token"))
         }
     })
+    //Function to view the questions
     const viewQuestion = () => {
         router.push("/questions");
     }
