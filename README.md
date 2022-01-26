@@ -74,9 +74,9 @@ npm run dev
 
 ## Authors
 
-[@Loathed94](https://github.com/Loathed94) - Christian Neij
-[@TheNeonLeon](https://github.com/TheNeonLeon) - Leon Listo
-[@Haruberi](https://github.com/Haruberi) - Anna Hallberg
+Christian Neij [@Loathed94](https://github.com/Loathed94) 
+Leon Listo [@TheNeonLeon](https://github.com/TheNeonLeon)
+Anna Hallberg [@Haruberi](https://github.com/Haruberi)
 
 ## License
 No license.
