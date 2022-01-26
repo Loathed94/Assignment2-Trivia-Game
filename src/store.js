@@ -118,8 +118,6 @@ export default createStore({
             return false;
         }
     },
-  }
-        },
         async resetToken({commit, state}){
             const code = await apiResetToken(state.token);
             console.log("Token code ",code);
