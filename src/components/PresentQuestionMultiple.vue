@@ -1,6 +1,9 @@
 <script setup>
     import {ref} from 'vue';
+    
     const emit = defineEmits(["gameCompletedSuccessful"]);
+
+    //send answer upon game completion
     const sendAnswer = answer => {
         emit("gameCompletedSuccessful", answer);
     }
@@ -10,10 +13,12 @@
             required: true
         }
     })
+    //shuffle algorithm 
     function shuffleArray(array) {
         return array.sort( ()=>Math.random()-0.5 );
     }
 
+//variables for shuffle and the respective buttons for multiple questions
 const arrayForShuffling = [props.question.correct_answer, props.question.incorrect_answers[0], props.question.incorrect_answers[1], props.question.incorrect_answers[2]];
 const shuffledArray = shuffleArray(arrayForShuffling);
 const firstAnswer = ref(arrayForShuffling[0]);
@@ -24,18 +29,18 @@ const fourthAnswer = ref(arrayForShuffling[3]);
 </script>
 
 <template>
-    <button type="button" @click="sendAnswer(firstAnswer)" 
+    <button v-html="firstAnswer" type="button" @click="sendAnswer(firstAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded mx-2">
-        {{firstAnswer}}</button>
-    <button type="button" @click="sendAnswer(secondAnswer)" 
+        </button>
+    <button v-html="secondAnswer" type="button" @click="sendAnswer(secondAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded mx-2">
-        {{secondAnswer}}</button>
-    <button type="button" @click="sendAnswer(thirdAnswer)" 
+        </button>
+    <button v-html="thirdAnswer" type="button" @click="sendAnswer(thirdAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded mx-2">
-        {{thirdAnswer}}</button>
-    <button type="button" @click="sendAnswer(fourthAnswer)" 
+    </button>
+    <button v-html="fourthAnswer" type="button" @click="sendAnswer(fourthAnswer)" 
         class="bg-emerald-400 text-white p-2 rounded mx-2">
-        {{fourthAnswer}}</button>
+        </button>
 </template>
 
 <style scoped>

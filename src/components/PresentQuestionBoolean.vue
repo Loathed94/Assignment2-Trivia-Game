@@ -2,7 +2,10 @@
 <script setup>
 
 import {ref} from 'vue';
+
+
 const emit = defineEmits(["gameCompletedSuccessful"]);
+//send answer upon game completion
 const sendAnswer = answer => {
     emit("gameCompletedSuccessful", answer);
 }
@@ -12,12 +15,15 @@ const props = defineProps({
             required: true
         }
 })
+
+//shuffle answers
 function shuffleArray(array) {
  
    return array.sort( ()=>Math.random()-0.5 );
  
 }
 
+//variables for shuffle and answers
 const arrayForShuffling = [props.question.correct_answer, props.question.incorrect_answers[0]];
 const shuffledArray = shuffleArray(arrayForShuffling);
 const firstAnswer = ref(arrayForShuffling[0]);

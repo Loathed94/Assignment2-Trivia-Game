@@ -1,10 +1,13 @@
 <script setup>
+//imports
   import { useStore } from 'vuex';
   import {computed, ref} from "vue";
   const emit = defineEmits(["startGameSuccessful"]);
 
   const store = useStore();
   const categories = computed(() => store.state.categories)
+
+  //functionality when starting a trivia game
   const onStartGameClick = async () => {
     if(checkAcceptableQuantity()){
       const category = selected.value;
@@ -42,11 +45,15 @@
       emit("startGameSuccessful");
     }
   }
+
+  //variables for respective selection items and errors
   const selected = ref("");
   const quantity = ref("");
   const difficulty = ref("");
   const quantityError = ref("");
   const fetchError = ref("");
+
+  //check if number of question are valid upon starting game
   const checkAcceptableQuantity = () => {
     if(Object.is(parseInt(quantity.value), NaN)){
       quantityError.value = "Must be a number, duh!"

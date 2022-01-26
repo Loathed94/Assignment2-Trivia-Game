@@ -1,21 +1,25 @@
 <script setup>
+//imports
 import { ref } from "vue";
-//import {apiGetUsers, apiUserRegister} from "../api/users";
 import {useStore} from "vuex"
 
+//variables for functions and templates
 const store = useStore()
 const emit = defineEmits(["onAuthSuccess"]);
 const username = ref("");
 const displayError = ref("");
 
+//function for switching views when logging in
 const onSuccess = user =>{
 
     emit("onAuthSuccess")
 }
+//display failure message when regiter and login unsuccessfull
 const onFailure = msg => {
   displayError.value = msg
 }
 
+//register a new user functionality
 const onRegister = async () => {
   const userName = username.value;
   const user = await store.dispatch("getUsers", { userName});
@@ -32,6 +36,7 @@ const onRegister = async () => {
   }
   };
 
+//login in with existing user functionality
 const onLogin = async () => {
   const userName = username.value;
   const user = await store.dispatch("getUsers", { userName});

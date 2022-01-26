@@ -1,6 +1,7 @@
 import { BASE_URL_Question_DB } from ".";
 
 
+//fetch categories fetch function
 export async function apiFetchCategories(){
     try {
         const response = await fetch(`${BASE_URL_Question_DB}/api_category.php`);
@@ -10,6 +11,8 @@ export async function apiFetchCategories(){
         return [[], error.message];
     }
 }
+
+//fetch questions function
 export async function apiFetchQuestions(category, quantityVal, difficultyVal, token){
     try {
         let response;
@@ -25,6 +28,8 @@ export async function apiFetchQuestions(category, quantityVal, difficultyVal, to
         return [[], error.message];
     }
 }
+
+//fetch request token functionality
 export async function apiRequestToken(){
     try {
         let code = 1;
@@ -39,6 +44,8 @@ export async function apiRequestToken(){
     } catch (error) {
     }
 }
+
+//reset token functionality
 export async function apiResetToken(token){
     const response = await fetch(`${BASE_URL_Question_DB}/api_token.php?command=reset&token=${token}`);
     const content = await response.json();
