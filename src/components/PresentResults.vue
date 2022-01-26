@@ -22,9 +22,10 @@ const store = useStore()
 
 <template>
     <li class="mb-10">
-        <div >Question: {{question}}</div>
-       <div> Correct answer: {{correctAnswer}}</div>
-        <div>User's answer: {{userAnswer}}</div> 
+        
+        <span>Question: <span v-html="question"> </span></span>
+       <span> Correct answer: <span v-html="correctAnswer"> </span></span>
+       <span> User answer: <span v-html="userAnswer"> </span></span>
     </li>
 </template>
 
