@@ -64,6 +64,12 @@ const onReplayClick = async () => {
       //emit("startGameSuccessful");
       replayGame();
   }
+  const onBackToStartClick = () => {
+    localStorage.removeItem('question-settings');
+    score.value *= 0;
+    store.commit('clearResults');
+    router.push('/selection');
+  }
 </script>
 
 <template>
@@ -75,6 +81,7 @@ const onReplayClick = async () => {
   <div>Total score from game session: {{score}}</div>
   <div v-if="score>highscore">New highscore achieved! Highscore will be updated!</div>
   <button class="bg-emerald-400 text-white p-2 rounded mx-2" @click="onReplayClick">Replay</button>
+  <span><button class="bg-emerald-400 text-white p-2 rounded mx-2" @click="onBackToStartClick">Back to selection</button></span>
 </template>
 
 <style scoped>
