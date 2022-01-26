@@ -19,7 +19,7 @@ One question at a time is displayed. The user answer the question and move on to
 
 - The result screen
 The question screen show all the questions along with the correct- and user's answers plus display the total score.
-The user can press a button to return to the start screen or replat with different questions, with the same difficulty level and category.
+The user can press a button to return to the start screen or replay with different questions, with the same difficulty level and category.
 
 ## Getting started
 
@@ -28,6 +28,8 @@ The user can press a button to return to the start screen or replat with differe
 - [Vue-3 setup](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup)
 - [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 - Vue CLI
+- Vuex
+- Vue-Router
 - [Tailwind](https://tailwindcss.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
