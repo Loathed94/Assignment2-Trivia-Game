@@ -10,11 +10,9 @@ const displayError = ref("");
 
 const onSuccess = user =>{
 
-    store.commit("setUser", user)
     emit("onAuthSuccess")
 }
 const onFailure = msg => {
-  console.log(msg) //Bör va ett errormeddelande på vyn.
   displayError.value = msg
 }
 
@@ -25,14 +23,13 @@ const onRegister = async () => {
     onFailure(user.username+" already exists!");
     return;
   }else if(user === null){
-    const error = await store.dispatch("createUser", {userName});//apiUserRegister(username.value)
+    const error = await store.dispatch("createUser", {userName});
         emit("onAuthSuccess")
     if(error !== null){
       onFailure(error);
       return;
     }
   }
-   //console.log("success", user) //User blir skapad nu men skickas inte hit.
   };
 
 const onLogin = async () => {
@@ -41,6 +38,9 @@ const onLogin = async () => {
   if(user !== null){
     store.commit("setUser", user);
     onSuccess(user)
+  }else if(user === null){
+    onFailure("You have to register first");
+    return
   }
 };
 

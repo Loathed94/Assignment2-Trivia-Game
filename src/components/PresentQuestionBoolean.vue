@@ -2,7 +2,6 @@
 <script setup>
 
 import {ref} from 'vue';
-import { apiAnswerRegister } from '../api/game';
 const emit = defineEmits(["gameCompletedSuccessful"]);
 const sendAnswer = answer => {
     emit("gameCompletedSuccessful", answer);

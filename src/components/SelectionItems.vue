@@ -10,13 +10,35 @@
       const category = selected.value;
       const quantityVal = parseInt(quantity.value);
       const difficultyVal = difficulty.value;
-      const error = await store.dispatch("fetchQuestions", {category, quantityVal, difficultyVal});
-      if(error !== null){
-        fetchError.value = error;
+      let code = 1;
+      while(code !== 0){
+        code = await store.dispatch("fetchQuestions", {category, quantityVal, difficultyVal});
+        if(code === 1){
+          fetchError.value = "ERROR: Too many questions, try reducing amount of questions or change one of the other settings.";
+          return;
+        }
+        else if(code === 2){
+          fetchError.value = "ERROR: Developers fucked up, request sent was invalid.";
+          return;
+        }
+        else if(code === 3){ //Token invalid.
+          console.log("Token invalid.")
+          const resultingCode = await store.dispatch("fetchToken");
+        }
+        else if(code === 4){
+          console.log("Token reset required.")
+          const resultingCode = await store.dispatch('resetToken');
+          if(resultingCode !== 0){
+            console.log("Token reset -> fetch new.")
+            await store.dispatch("fetchToken");
+          }
+        }
+        else if(code !== 0){
+          console.log(code);
+          fetchError.value = "ERROR: We don't even know what the hell happened!";
+        }
       }
-      else{
-        emit("startGameSuccessful");
-      }
+      emit("startGameSuccessful");
     }
   }
   const selected = ref("");

@@ -50,7 +50,7 @@ const registerAnswer = (answer) => {
 <template>
 
     <main class="container mx-auto px-10 mt-10" >
-        <h1 class="mb-5 text-2xl font-semibold">{{questionDescription}}</h1>
+        <h1 class="mb-5 text-2xl font-semibold" v-html="questionDescription"></h1>
         <PresentQuestionBoolean v-if="typeRef==='boolean'" @gameCompletedSuccessful="registerAnswer" :question="currentQuestion" :key="componentKeyBool"/>
         <PresentQuestionMultiple v-if="typeRef==='multiple'" @gameCompletedSuccessful="registerAnswer" :question="currentQuestion" :key="componentKeyMult"/> 
     </main>
