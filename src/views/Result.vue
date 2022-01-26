@@ -3,6 +3,7 @@ import { useStore } from 'vuex';
 import {computed, ref} from "vue";
 import PresentResults from '../components/PresentResults.vue';
 import { apiUpdateHighScore } from '../api/users';
+import router from '../router';
 
 const store = useStore();
 const score = ref(0);
@@ -13,6 +14,11 @@ const score = ref(0);
             required: true
         }
     })
+
+const backToStart = () => {
+  router.push('/selection')
+}
+
 let highscore = computed(() => store.state.highScore);
 const results = computed(() => store.state.results);
 
@@ -40,6 +46,7 @@ console.log(score.value);
   </ul>
   <div>Current highscore: {{highscore}}</div>
   <div>Total score from game session: {{score}}</div>
+  <button class="bg-emerald-400 text-white p-2 rounded mx-2" @click="backToStart">Replay</button>
 </template>
 
 <style scoped>
